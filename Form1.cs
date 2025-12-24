@@ -15,6 +15,55 @@ namespace Square_Chaser
     {
         private System.Windows.Forms.Timer gameTimer;
 
+
+        // The colour of the players 
+        SolidBrush play1Color = new SolidBrush(Color.LightCyan);
+        SolidBrush play2Color = new SolidBrush(Color.HotPink);
+
+        // The colour of the target circle and other power ups/downs
+        SolidBrush targetCircleColor = new SolidBrush(Color.Magenta);
+        SolidBrush speedColor = new SolidBrush(Color.MediumOrchid);
+
+        //These rectangles and circles with initial x,y,width and height
+        Rectangle player1 = new Rectangle(130, 160, 50, 50);
+        Rectangle player2 = new Rectangle(230, 160, 50, 50);    
+        
+
+
+        int player1Score = 0;                                                            // Will get to scores later
+        int player2Score = 0;                                                            // Will get to scores later
+
+        //The speeds will be the pixel step size each time the player or ball moves
+        int playerSpeed = 4;
+
+
+        int ballXSpeed = -6;                                                               // Will get to ball later
+        int ballYSpeed = 6;                                                                // Will get to ball later
+
+
+        //These booleans are required for keypress methods
+
+        //player 1
+        bool wDown = false;
+        bool sDown = false;
+        bool aDown = false;
+        bool dDown = false;
+
+        //player 2
+        bool upArrowDown = false;
+        bool downArrowDown = false;
+        bool leftArrowDown = false;
+        bool rightArrowDown = false;
+
+
+        int targetRectangleX = 0;
+        int targetRectangleY = 0;
+        int speedPowerUpX = 0;
+        int speedPowerUpY = 0;
+
+        Random randomPoint = new Random();
+
+
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +73,12 @@ namespace Square_Chaser
             gameTimer.Interval = 20;        // 20 ms
             gameTimer.Enabled = true;       // start immediately
             gameTimer.Tick += GameTimer_Tick;
+            
+            targetRectangleX = randomPoint.Next(75, 490);
+            targetRectangleY = randomPoint.Next(75, 400);
+
+            speedPowerUpX = randomPoint.Next(75, 490);
+            speedPowerUpY = randomPoint.Next(75, 400);
 
         }
 
@@ -80,45 +135,6 @@ namespace Square_Chaser
         }
 
 
-        // The colour of the players
-        SolidBrush play1Color = new SolidBrush(Color.LightCyan);
-        SolidBrush play2Color = new SolidBrush(Color.HotPink);
-
-        //These rectangles with initial x,y,width and height
-        Rectangle player1 = new Rectangle(130, 160, 50, 50);
-        Rectangle player2 = new Rectangle(230, 160, 50, 50);
-        
-        // Rectangle ball = new Rectangle(295, 195, 10, 10);                               // Will get to ball later
-
-        
-        int player1Score = 0;                                                            // Will get to scores later
-        int player2Score = 0;                                                            // Will get to scores later
-
-        //The speeds will be the pixel step size each time the player or ball moves
-        int playerSpeed = 4;
-
-        
-        int ballXSpeed = -6;                                                               // Will get to ball later
-        int ballYSpeed = 6;                                                                // Will get to ball later
-
-
-        //These booleans are required for keypress methods
-
-        //player 1
-        bool wDown = false;
-        bool sDown = false;
-        bool aDown = false;
-        bool dDown = false;
-
-        //player 2
-        bool upArrowDown = false;
-        bool downArrowDown = false; 
-        bool leftArrowDown = false;
-        bool rightArrowDown = false;
-
-
-
-
         private void label4_Click(object sender, EventArgs e)
         {
 
@@ -134,7 +150,8 @@ namespace Square_Chaser
             Graphics g = e.Graphics;
             g.FillRectangle(play1Color, player1);
             g.FillRectangle(play2Color, player2);
-            // g.FillRectangle(whiteBrush, ball);
+            g.FillRectangle(targetCircleColor, targetRectangleX, targetRectangleY, 40, 40);
+            g.FillEllipse(speedColor, speedPowerUpX, speedPowerUpY, 26, 26);
 
             /* Graphics g = e.Graphics;
 
