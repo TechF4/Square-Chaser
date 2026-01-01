@@ -29,45 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.playerTimers = new System.Windows.Forms.Timer(this.components);
+            this.targetTimer = new System.Windows.Forms.Timer(this.components);
+            this.p1scoreLabel = new System.Windows.Forms.Label();
+            this.p2scoreLabel = new System.Windows.Forms.Label();
+            this.winningLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.LavenderBlush;
-            this.label3.Location = new System.Drawing.Point(34, 38);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 580);
-            this.label3.TabIndex = 2;
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.Color.LavenderBlush;
-            this.label4.Location = new System.Drawing.Point(743, 38);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 580);
-            this.label4.TabIndex = 3;
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.Color.LavenderBlush;
-            this.label5.Location = new System.Drawing.Point(34, 571);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(755, 47);
-            this.label5.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.LavenderBlush;
-            this.label2.Location = new System.Drawing.Point(34, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(755, 47);
-            this.label2.TabIndex = 5;
             // 
             // playerTimers
             // 
@@ -75,16 +42,52 @@
             this.playerTimers.Interval = 200;
             this.playerTimers.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // targetTimer
+            // 
+            this.targetTimer.Enabled = true;
+            this.targetTimer.Interval = 10;
+            this.targetTimer.Tick += new System.EventHandler(this.targetTimer_Tick);
+            // 
+            // p1scoreLabel
+            // 
+            this.p1scoreLabel.Font = new System.Drawing.Font("Ravie", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1scoreLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.p1scoreLabel.Location = new System.Drawing.Point(0, 9);
+            this.p1scoreLabel.Name = "p1scoreLabel";
+            this.p1scoreLabel.Size = new System.Drawing.Size(373, 65);
+            this.p1scoreLabel.TabIndex = 0;
+            this.p1scoreLabel.Text = "Player 1 Score: 0";
+            // 
+            // p2scoreLabel
+            // 
+            this.p2scoreLabel.Font = new System.Drawing.Font("Ravie", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2scoreLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.p2scoreLabel.Location = new System.Drawing.Point(0, 74);
+            this.p2scoreLabel.Name = "p2scoreLabel";
+            this.p2scoreLabel.Size = new System.Drawing.Size(373, 65);
+            this.p2scoreLabel.TabIndex = 1;
+            this.p2scoreLabel.Text = "Player 2 Score: 0";
+            // 
+            // winningLabel
+            // 
+            this.winningLabel.Font = new System.Drawing.Font("Ravie", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.winningLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.winningLabel.Location = new System.Drawing.Point(12, 243);
+            this.winningLabel.Name = "winningLabel";
+            this.winningLabel.Size = new System.Drawing.Size(792, 175);
+            this.winningLabel.TabIndex = 2;
+            this.winningLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.winningLabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Pink;
             this.ClientSize = new System.Drawing.Size(822, 653);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.winningLabel);
+            this.Controls.Add(this.p2scoreLabel);
+            this.Controls.Add(this.p1scoreLabel);
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "Form1";
@@ -97,11 +100,11 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer playerTimers;
+        private System.Windows.Forms.Timer targetTimer;
+        private System.Windows.Forms.Label p1scoreLabel;
+        private System.Windows.Forms.Label p2scoreLabel;
+        private System.Windows.Forms.Label winningLabel;
     }
 }
 

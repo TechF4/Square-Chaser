@@ -21,13 +21,14 @@ namespace Square_Chaser
         SolidBrush play2Color = new SolidBrush(Color.HotPink);
 
         // The colour of the target circle and other power ups/downs
-        SolidBrush targetCircleColor = new SolidBrush(Color.Magenta);
+        SolidBrush targetRectangleColor = new SolidBrush(Color.Magenta);
         SolidBrush speedColor = new SolidBrush(Color.MediumOrchid);
 
-        //These rectangles and circles with initial x,y,width and height
+        //These rectangles with initial x,y,width and height
         Rectangle player1 = new Rectangle(130, 160, 50, 50);
-        Rectangle player2 = new Rectangle(230, 160, 50, 50);    
-        
+        Rectangle player2 = new Rectangle(230, 160, 50, 50);
+        Rectangle targetRectangle = new Rectangle(0, 0, 40, 40);
+
 
 
         int player1Score = 0;                                                            // Will get to scores later
@@ -73,9 +74,17 @@ namespace Square_Chaser
             gameTimer.Interval = 20;        // 20 ms
             gameTimer.Enabled = true;       // start immediately
             gameTimer.Tick += GameTimer_Tick;
-            
+
+            targetTimer = new System.Windows.Forms.Timer();
+            targetTimer.Interval = 10;        // 10 ms
+            targetTimer.Enabled = true;       // start immediately
+            targetTimer.Tick += targetTimer_Tick;
+
+
             targetRectangleX = randomPoint.Next(75, 490);
             targetRectangleY = randomPoint.Next(75, 400);
+
+            targetRectangle = new Rectangle(targetRectangleX, targetRectangleY, 40, 40);
 
             speedPowerUpX = randomPoint.Next(75, 490);
             speedPowerUpY = randomPoint.Next(75, 400);
@@ -150,7 +159,7 @@ namespace Square_Chaser
             Graphics g = e.Graphics;
             g.FillRectangle(play1Color, player1);
             g.FillRectangle(play2Color, player2);
-            g.FillRectangle(targetCircleColor, targetRectangleX, targetRectangleY, 40, 40);
+            g.FillRectangle(targetRectangleColor, targetRectangle);
             g.FillEllipse(speedColor, speedPowerUpX, speedPowerUpY, 26, 26);
 
             /* Graphics g = e.Graphics;
@@ -236,6 +245,46 @@ namespace Square_Chaser
                     break;
             }
 
+        }
+
+        private void targetTimer_Tick(object sender, EventArgs e)
+        {
+            // Ticks every 10 ms 
+
+            if(player1.IntersectsWith(targetRectangle))
+            {
+                player1Score += 1;
+
+                p1scoreLabel.Text = "Score: " + player1Score;
+
+                if (player1Score == 4)
+                {
+                    winningLabel.Visible = true;
+                    winningLabel.Text = "Player 1 WON!";
+
+                    gameTimer.Stop();
+                    targetTimer.Stop();
+                }
+            }
+
+
+            if (player2.IntersectsWith(targetRectangle))
+            {
+                player2Score += 1;
+
+                p2scoreLabel.Text = "Score: " + player2Score;
+
+                if (player2Score == 4)
+                {
+                    winningLabel.Visible = true;
+                    winningLabel.Text = "Player 2 WON!";
+
+                    gameTimer.Stop();
+                    targetTimer.Stop();
+
+                }
+            }
+            
         }
     }
 }
