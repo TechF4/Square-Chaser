@@ -62,7 +62,7 @@
             // 
             this.p2scoreLabel.Font = new System.Drawing.Font("Ravie", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p2scoreLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.p2scoreLabel.Location = new System.Drawing.Point(0, 74);
+            this.p2scoreLabel.Location = new System.Drawing.Point(467, 9);
             this.p2scoreLabel.Name = "p2scoreLabel";
             this.p2scoreLabel.Size = new System.Drawing.Size(373, 65);
             this.p2scoreLabel.TabIndex = 1;
